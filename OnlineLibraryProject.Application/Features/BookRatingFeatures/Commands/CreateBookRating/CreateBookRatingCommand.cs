@@ -5,5 +5,5 @@ namespace OnlineLibraryProject.Application.Features.BookRatingFeatures.Command.C
 
 public record CreateBookRatingCommand(
     string BookId,
-    string UserId,
+    //string UserId,
     int Star) : IRequest<MessageResponse>;

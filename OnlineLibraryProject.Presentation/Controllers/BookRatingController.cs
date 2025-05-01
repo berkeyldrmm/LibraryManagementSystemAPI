@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnlineLibraryProject.Application.Features.BookRatingFeatures.Command.CreateBookRating;
 using OnlineLibraryProject.Application.Features.BookRatingFeatures.Command.DeleteBookRating;
 using OnlineLibraryProject.Application.Features.BookRatingFeatures.Command.UpdateBookRating;
+using OnlineLibraryProject.Application.Features.BookRatingFeatures.Queries.GetBookRatingByUser;
 using OnlineLibraryProject.Application.Features.BookRatingFeatures.Queries.GetBookRatings;
 using OnlineLibraryProject.Application.Features.BookRatingFeatures.Queries.GetBookRatingsByUser;
 using OnlineLibraryProject.Domain.Dtos.Responses;
@@ -27,6 +28,12 @@ public class BookRatingController : ApiController
     public async Task<IActionResult> GetBookRatingsByUser(string userId, CancellationToken cancellationToken)
     {
         return Ok(await _mediator.Send(new GetBookRatingsByUserQuery(userId), cancellationToken));
+    }
+
+    [HttpGet("GetBookRatingByUser/{bookId}")]
+    public async Task<IActionResult> GetBookRatingByUser(string bookId, CancellationToken cancellationToken)
+    {
+        return Ok(await _mediator.Send(new GetBookRatingByUserQuery(bookId), cancellationToken));
     }
 
     [HttpPost]

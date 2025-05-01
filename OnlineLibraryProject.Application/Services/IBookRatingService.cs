@@ -10,4 +10,5 @@ public interface IBookRatingService : IGenericService<BookRating, UserRatingDto,
 {
     Task<DataResponse<BookRatingsDto>> GetBookRatings(string bookId);
     Task<DataResponse<UserRatingsDto>> GetBookRatingsByUser(string userId);
+    Task<DataResponse<UserBookRatingDto>> GetUserBookRating(string bookId);
 }

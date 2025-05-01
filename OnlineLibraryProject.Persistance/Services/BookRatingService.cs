@@ -26,6 +26,11 @@ public class BookRatingService : GenericService<BookRating, UserRatingDto, BookR
         return new DataResponse<UserRatingsDto>(await _repository.GetBookRatingsByUser(userId).FirstOrDefaultAsync());
     }
 
+    public async Task<DataResponse<UserBookRatingDto>> GetUserBookRating(string bookId)
+    {
+        return new DataResponse<UserBookRatingDto>(await _repository.GetUserBookRating(bookId).FirstOrDefaultAsync());
+    }
+
     public async Task<MessageResponse> Update(UpdateBookRatingCommand dto)
     {
         BookRating bookRating = await _repository.GetByIdAsync(dto.Id);

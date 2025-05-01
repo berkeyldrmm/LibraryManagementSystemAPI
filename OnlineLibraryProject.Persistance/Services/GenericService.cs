@@ -55,7 +55,7 @@ public class GenericService<T, TListDto, Dto, PostCommand, TRepository>
 
     public async Task<MessageResponse> Delete(string id, CancellationToken cancellationToken)
     {
-        T entity = await _repository.GetByIdAsync(id);;
+        T entity = await _repository.GetByIdAsync(id);
         if (entity == null)
             throw new Exception("Entity not found");
 
