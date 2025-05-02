@@ -25,7 +25,8 @@ public class BookRepository : GenericRepository<Book>, IBookRepository
             b.Description,
             b.ImageBase64,
             b.IsEbook,
-            b.EBookUrl)).FirstOrDefaultAsync();
+            b.EBookUrl,
+            b.Stock)).FirstOrDefaultAsync();
     }
 
     public async Task<IEnumerable<TopBorrowedBooksDto>> GetTopBorrowedBooks()
@@ -41,7 +42,7 @@ public class BookRepository : GenericRepository<Book>, IBookRepository
         return await Entity
         .Include(b => b.Ratings) 
         .Where(b => b.Ratings.Any())
-        .Select(b => new TopRatingBooksDto(b.Id, b.Name, b.AuthorName, b.NumberOfPages, b.ImageBase64, Math.Round(b.Ratings.Average(r => r.Star), 1), b.Ratings.Count()))
+        .Select(b => new TopRatingBooksDto(b.Id, b.Name, b.AuthorName, b.NumberOfPages, b.ImageBase64, Math.Round(b.Ratings.Average(r => r.Star), 1), b.Ratings.Count(), b.IsEbook, b.EBookUrl))
         .ToListAsync();
     }
 }

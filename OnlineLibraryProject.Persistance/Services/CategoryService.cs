@@ -45,7 +45,7 @@ public class CategoryService : GenericService<Category, CategoryListDto, Categor
         _ = await _repository.AddAsync(entity, cancellationToken);
         _ = await _unitOfWork.SaveChangesAsync();
 
-        CategoryDto categoryDto = _mapper.Map<CategoryDto>(dto);
+        CategoryDto categoryDto = _mapper.Map<CategoryDto>(entity);
 
         return new DataResponse<CategoryDto>(categoryDto);
     }
